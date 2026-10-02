@@ -2,16 +2,15 @@
 
 ## End-to-End Product Data Science Case Study
 
-**Author:** Pranav Padmannavar  
-**Project Duration:** April 2026 – May 2026  
+**Author:** Ugesh Yada  
 **Focus Areas:** Product Analytics, Experimentation, Purchase Propensity Modeling, Analytics Engineering, GenAI Analytics Copilot  
 **Tools:** BigQuery SQL, Python, Tableau, Scikit-learn, Streamlit, OpenAI API, FAISS, SentenceTransformers  
 
 **Project Links**
 
-- [GitHub Repository](https://github.com/pranavsp108/ecommerce-product-analytics-experimentation.git)
-- [Tableau Dashboard](https://public.tableau.com/views/GA-E-commerce/CustomerSegments?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
-- [AI Analytics Copilot](https://ecommerce-analytics-copilot.streamlit.app/)
+- [GitHub Repository](https://github.com/Ugesh123/ecommerce-product-analytics-experimentation.git)
+- [Tableau Dashboard](https://public.tableau.com/app/profile/yada.ugesh/viz/E-CommerceCampaignExperimentation/Dashboard1#1)
+- [AI Analytics Copilot](https://ecommerce-appuct-analytics-experimentation-ugesh.streamlit.app/)
 
 ---
 
@@ -2931,15 +2930,11 @@ This appendix summarizes the major artifacts created in the project.
 
 ---
 
-### 19.1 Project Links
 
-- [GitHub Repository](https://github.com/pranavsp108/ecommerce-product-analytics-experimentation.git)
-- [Tableau Dashboard](https://public.tableau.com/views/GA-E-commerce/CustomerSegments?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
-- [AI Analytics Copilot](https://ecommerce-analytics-copilot.streamlit.app/)
 
 ---
 
-### 19.2 Main Repository Folders
+### 19.1 Main Repository Folders
 
 ```text
 .
@@ -2956,7 +2951,7 @@ This appendix summarizes the major artifacts created in the project.
 
 ---
 
-### 19.3 Main SQL Files
+### 19.2 Main SQL Files
 
 | SQL File | Purpose |
 |---|---|
@@ -2973,7 +2968,7 @@ This appendix summarizes the major artifacts created in the project.
 
 ---
 
-### 19.4 Main Notebooks
+### 19.3 Main Notebooks
 
 | Notebook | Purpose |
 |---|---|
