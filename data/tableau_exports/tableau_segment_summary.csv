@@ -1,0 +1,10 @@
+primary_customer_segment,recommended_action,targeting_priority_rank,users,buyers,repeat_buyers,transactions,revenue,revenue_per_user,buyer_rate,pct_of_users,pct_of_revenue
+high_value_customer,protect_and_retain_vip_customers,1,407,407,173,806,136607.0,335.64,100.0,0.15,37.72
+repeat_buyer,promote_loyalty_and_cross_sell,2,337,337,337,788,31852.0,94.52,100.0,0.12,8.79
+one_time_buyer,drive_second_purchase,3,3303,3303,0,3303,192462.0,58.27,100.0,1.22,53.14
+purchase_recorded_revenue_missing,audit_purchase_revenue_tracking,4,353,353,8,361,0.0,0.0,100.0,0.13,0.0
+checkout_abandoner_non_buyer,recover_checkout_abandonment,5,5315,0,0,0,1244.0,0.23,0.0,1.97,0.34
+cart_abandoner_non_buyer,recover_cart_abandonment,6,6888,0,0,0,0.0,0.0,0.0,2.55,0.0
+engaged_browser_non_buyer,personalize_product_recommendations,8,44732,0,0,0,0.0,0.0,0.0,16.56,0.0
+repeat_visitor_non_buyer,nurture_repeat_visitors,9,25559,0,0,0,0.0,0.0,0.0,9.46,0.0
+low_activity_user,low_priority_generic_awareness,10,183260,0,0,0,0.0,0.0,0.0,67.84,0.0
