@@ -1,50 +1,53 @@
-# E-Commerce Product Analytics, Experimentation & AI Copilot Platform
+# E-Commerce Growth Case Study: Product Analytics, Experimentation & AI Copilot
 
-[View Tableau Dashboard](https://public.tableau.com/app/profile/yada.ugesh/viz/E-CommerceCampaignExperimentation/Dashboard1#1)
+**Only 1.35% of 360,129 sessions ended in a purchase. This project finds out why, decides what to fix first, and builds the tools to track it.**
 
-[View AI Analytics Copilot](https://ecommerce-appuct-analytics-experimentation-ugesh.streamlit.app/)
-
-[Read Full Project Case Study](https://github.com/Ugesh123/ecommerce-product-analytics-experimentation/blob/main/reports/project_case_study.md)
-
-## Overview
-
-This project simulates the work of a product data scientist at an e-commerce company.
-
-The goal is to analyze event-level customer behavior, diagnose conversion funnel drop-offs, identify product and customer opportunities, model future purchase propensity, and evaluate randomized marketing experiments.
-
-The project combines:
-
-- BigQuery SQL analytics engineering
-- GA4 event-level data analysis
-- Tableau executive dashboards
-- Customer segmentation
-- Purchase propensity modeling
-- A/B testing and campaign experimentation
-- AI-powered analytics copilot for natural-language KPI Q&A, metric documentation, executive summaries, and experiment interpretation
-- Business recommendations for product and marketing teams
-
-The core dataset is the Google Analytics 4 BigQuery E-Commerce Demo Dataset. For the experimentation module, the project uses the MineThatData Email Campaign dataset to evaluate conversion lift, revenue lift, confidence intervals, and segment-level treatment effects.
+🔗 [Live Tableau Dashboard](https://public.tableau.com/app/profile/yada.ugesh/viz/E-CommerceCampaignExperimentation/Dashboard1#1) · [Live AI Analytics Copilot](https://ecommerce-appuct-analytics-experimentation-ugesh.streamlit.app/) · [Full Case Study](reports/project_case_study.md)
 
 ---
 
-## Business Problem
+## 🧭 Understanding the Problem
 
-Leadership wants to improve e-commerce conversion, customer retention, and revenue.
+### 1️⃣ Context
 
-This project answers the following product and business questions:
+| | |
+|---|---|
+| **About the company** | A Google Merchandise-style online store (GA4 e-commerce demo data): apparel, accessories and branded products sold online. |
+| **About the industry** | E-commerce, where small gains in conversion and repeat purchase compound directly into revenue. |
+| **Stakeholders** | **Executives** (where to invest?), **product managers** (where does the journey break?), **marketing** (which segments and campaigns work?), and **business users** (answers without SQL). |
+| **Research** | Behavioural analysis of **360,129 sessions** and **270,154 users** in BigQuery: funnel, category, cohort and segment views, plus a randomised **email experiment** (MineThatData). |
 
-- Where do users drop off in the purchase funnel?
-- Which traffic sources and devices drive stronger conversion and revenue?
-- Which product categories generate revenue or create missed add-to-cart opportunities?
-- Which customer cohorts retain after acquisition?
-- Which customer segments should marketing prioritize?
-- Which users are most likely to purchase in the future?
-- Did the email campaign create incremental conversion and revenue lift?
-- What product, merchandising, and marketing actions should leadership prioritize?
+### 2️⃣ Diagnosis
+
+| | |
+|---|---|
+| **Pain points** | Only **1.35%** of sessions end in a purchase, and **21.08%** of carts are abandoned. Leadership cannot see *where* users drop off or *who* to focus on. |
+| **Key takeaways** | Only **21.4%** of sessions ever view a product (biggest leak) · only **43.7%** of checkouts complete (second leak) · **407 high-value customers** drive **37.7%** of revenue · one-time buyers drive **53.1%**, so second purchases are a big opportunity. |
+| **Benchmark view** | Add-to-cart → checkout is already strong (**73.1%**), so the problem is not intent but **discovery** and **checkout friction**. Mobile slightly outperforms desktop, so fixes should not be desktop-first. |
+| **Trade-off** | Broad discounts for everyone vs. targeting likely buyers. The propensity model shows the **top 5%** of scored users buy at **9.9×** the base rate, so targeting wins. |
+
+### 3️⃣ Strategy
+
+| | |
+|---|---|
+| **User persona** | **Arjun, a growth product manager** *(illustrative persona)*. He needs to know which part of the funnel to fix first and how to prove the fix worked. |
+| **Prioritisation** | ① Product discovery (biggest gap) → ② checkout friction → ③ roll out the winning email variant (**+0.68 pp** conversion). |
+| **Solution** | A decision tool for every team: **5 Tableau dashboards** for PMs, a **buyer-propensity model** (0.847 ROC-AUC) for marketing, and an **AI copilot** anyone can ask without SQL. |
+| **Implementation** | BigQuery SQL layers (staging → marts) → Tableau → scikit-learn model → A/B analysis with bootstrap confidence intervals → Streamlit copilot with RAG. Details in the engineering section below. |
+
+### 4️⃣ Impact
+
+| | |
+|---|---|
+| **Business impact** | A clear, ranked answer to "what should we fix first?", backed by funnel data rather than opinion. |
+| **Financial impact** | Email outreach lifted revenue per user by **+$0.60** (95% CI $0.38 to $0.82), with the Mens variant at **+$0.77**. Retargeting the top 5% of scored users reaches buyers at **9.9×** the base rate. |
+| **Risk & mitigation** | Demo data has limited price and margin context → recommendations are framed as tests, not guarantees · the experiment dataset differs from the GA4 site → methodology is shown, not a live rollout · model validated offline → used for ranking audiences only. |
+| **Roadmap & metrics** | **Now:** roll out the Mens email; retarget the top 5% · **Next:** test search, navigation and product pages · **Later:** uplift modelling. **North star:** purchase conversion (1.35% baseline). |
+| **Annexures** | [Full case study](reports/project_case_study.md) · [Detailed results](#-detailed-results) · [Dashboards](#%EF%B8%8F-dashboards) · [How to run](#%EF%B8%8F-how-to-run) |
 
 ---
 
-## Key Results
+## 📊 Detailed Results
 
 ### Product Analytics
 
@@ -110,78 +113,91 @@ The email campaign produced statistically significant conversion and revenue lif
 
 ---
 
-## Dashboard Screenshots
+## 🖼️ Dashboards
 
-### Executive Overview
+**Executive Overview**
+![Executive overview dashboard](images/executive_overview_dashboard.png)
 
-[Executive Overview Dashboard](https://github.com/Ugesh123/ecommerce-product-analytics-experimentation/blob/main/images/executive_overview_dashboard.png) ([image](https://github.com/Ugesh123/ecommerce-product-analytics-experimentation/raw/main/images/executive_overview_dashboard.png))
+**Funnel Analysis**
+![Funnel analysis dashboard](images/funnel_analysis_dashboard.png)
 
-### Funnel Analysis
+**Customer Segments**
+![Customer segments dashboard](images/customer_segments_dashboard.png)
 
-[Funnel Analysis Dashboard](https://github.com/Ugesh123/ecommerce-product-analytics-experimentation/blob/main/images/funnel_analysis_dashboard.png) ([image](https://github.com/Ugesh123/ecommerce-product-analytics-experimentation/raw/main/images/funnel_analysis_dashboard.png))
+**Cohort Retention**
+![Cohort retention dashboard](images/cohort_retention_dashboard.png)
 
-### Category Performance
-
-[Category Performance Dashboard](https://github.com/Ugesh123/ecommerce-product-analytics-experimentation/blob/main/images/category_performance_dashboard.png) ([image](https://github.com/Ugesh123/ecommerce-product-analytics-experimentation/raw/main/images/category_performance_dashboard.png))
-
-### Cohort Retention
-
-[Cohort Retention Dashboard](https://github.com/Ugesh123/ecommerce-product-analytics-experimentation/blob/main/images/cohort_retention_dashboard.png) ([image](https://github.com/Ugesh123/ecommerce-product-analytics-experimentation/raw/main/images/cohort_retention_dashboard.png))
-
-### Customer Segments
-
-[Customer Segments Dashboard](https://github.com/Ugesh123/ecommerce-product-analytics-experimentation/blob/main/images/customer_segments_dashboard.png) ([image](https://github.com/Ugesh123/ecommerce-product-analytics-experimentation/raw/main/images/customer_segments_dashboard.png))
+**Category Performance**
+![Category performance dashboard](images/category_performance_dashboard.png)
 
 ---
 
-## Project Architecture
+## 🤖 AI-Powered Analytics Copilot
 
-**svg**
+A GenAI layer that turns the analytics outputs into an assistant for product, marketing and executive stakeholders:
 
-[File display](https://viewscreen.githubusercontent.com/markdown/mermaid?docs_host=https%3A%2F%2Fdocs.github.com\&color_mode=dark#ea1383a9-2662-44eb-a9fe-cc7d4444e4a0)
+1. **Executive Summary**: stakeholder-ready summaries from dashboard exports, model outputs and experiment results.
+2. **Experiment Analyst**: interprets treatment vs control, conversion lift, revenue-per-user lift, bootstrap confidence intervals and rollout recommendations.
+3. **Metric & Methodology Q&A**: retrieval-augmented answers over project documentation (metric definitions, SQL logic, modelling assumptions).
+4. **Ask Your Metrics**: natural-language questions over curated KPI, segment, model and experiment outputs.
+
+**Demo Mode** shows saved AI outputs without an API key.
+
+![AI executive summary](images/ai_copilot_executive_summary.png)
 
 ---
 
-## AI-Powered Analytics Copilot
+## 🏗️ Architecture
 
-The project includes a GenAI layer that turns the analytics outputs into an interactive business assistant for product, marketing, and executive stakeholders.
+![Project architecture](images/report_architecture.png)
 
-The copilot supports four workflows:
+```
+GA4 event data (BigQuery)
+   → SQL staging & intermediate layers (sessions, items)
+   → Analytics marts (KPIs, funnel, cohorts, segments)
+   → Tableau dashboards  +  ML feature export → propensity model (scikit-learn)
+MineThatData email experiment → A/B analysis with bootstrap CIs
+All outputs → AI copilot (Streamlit + RAG)
+```
 
-1. **Executive Summary**
-   - Generates stakeholder-ready summaries from Tableau export files, model outputs, and experiment results.
-2. **Experiment Analyst**
-   - Interprets treatment-control results, conversion lift, revenue-per-user lift, bootstrap confidence intervals, and rollout recommendations.
-3. **Metric & Methodology Q&A**
-   - Uses retrieval-augmented generation over project documentation to answer questions about metric definitions, SQL logic, dashboard methodology, modeling assumptions, and experiment design.
-4. **Ask Your Metrics**
-   - Answers natural-language questions over curated KPI, category, customer segment, model, and experiment output files.
+## 🧰 Tech Stack
 
-### AI Stack
+- **Analytics engineering:** BigQuery SQL (staging → intermediate → marts)
+- **Analysis & modelling:** Python, Pandas, NumPy, scikit-learn, SciPy, statsmodels
+- **Visualisation:** Tableau
+- **AI copilot:** Streamlit, OpenAI API, SentenceTransformers, FAISS
 
-- Streamlit for the app interface
-- OpenAI API for reasoning and summarization
-- SentenceTransformers for local document embeddings
-- FAISS for vector search
-- Pandas for structured output handling
-- Saved markdown demo outputs for no-key public demos
+## 📁 Project Structure
 
-The app includes **Demo Mode**, allowing users to view saved AI-generated examples without entering an API key or making live OpenAI calls.
+```
+sql/            BigQuery SQL pipeline (01_stg_events → 11_ml_user_features_export)
+notebooks/      Data quality, propensity modelling, experimentation
+dashboards/     Tableau workbook (.twbx)
+ai_copilot/     Streamlit AI analytics copilot
+reports/        Full project case study
+images/         Dashboard and copilot screenshots
+```
 
-### AI Copilot Screenshots
+## ▶️ How to Run
 
-#### Executive Summary Generator
+```bash
+# 1. Install dependencies
+pip install -r requirements.txt
 
-[AI Executive Summary](https://github.com/Ugesh123/ecommerce-product-analytics-experimentation/blob/main/images/ai_copilot_executive_summary.png) ([image](https://github.com/Ugesh123/ecommerce-product-analytics-experimentation/raw/main/images/ai_copilot_executive_summary.png))
+# 2. Run the SQL pipeline in BigQuery, in order (sql/01_* → sql/11_*)
 
-#### Experiment Analyst
+# 3. Open the notebooks for modelling and experimentation
+jupyter notebook notebooks/
 
-[AI Experiment Analyst](https://github.com/Ugesh123/ecommerce-product-analytics-experimentation/blob/main/images/ai_copilot_experiment_analyst.png) ([image](https://github.com/Ugesh123/ecommerce-product-analytics-experimentation/raw/main/images/ai_copilot_experiment_analyst.png))
+# 4. Run the AI copilot (Demo Mode works without an API key)
+pip install -r ai_copilot/requirements_ai.txt
+streamlit run ai_copilot/app.py
+```
 
-#### Metric & Methodology Q&A
+## ⚠️ Limitations
 
-[AI RAG Q&A](https://github.com/Ugesh123/ecommerce-product-analytics-experimentation/blob/main/images/ai_copilot_rag_qa.png) ([image](https://github.com/Ugesh123/ecommerce-product-analytics-experimentation/raw/main/images/ai_copilot_rag_qa.png))
+- GA4 demo data is anonymised and has limited price, margin and marketing-spend context.
+- The email experiment uses the MineThatData dataset, so it demonstrates methodology rather than a live campaign on the same site.
+- The propensity model is validated offline and is best used for ranking audiences, not as a strict classifier.
 
-#### Ask Your Metrics
-
-[AI Ask Your Metrics](https://github.com/Ugesh123/ecommerce-product-analytics-experimentation/blob/main/images/ai_copilot_ask_metrics.png) ([image](https://github.com/Ugesh123/ecommerce-product-analytics-experimentation/raw/main/images/ai_copilot_ask_metrics.png))
+See the [full case study](reports/project_case_study.md) for detailed methodology, recommendations and limitations.
